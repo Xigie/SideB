@@ -43,19 +43,32 @@
     </div>
 
     <div class="staff-content">
-      <p class="users-note">目前所有可登入的員工帳號如下。</p>
-      <div id="users-list"></div>
+      <div class="mail-tabs">
+        <a href="#" class="active" data-users-tab="staff">員工</a>
+        <a href="#" data-users-tab="customer">顧客</a>
+      </div>
+
+      <div data-users-panel="staff">
+        <p class="users-note">目前所有可登入的員工帳號如下。</p>
+        <div id="staff-users-list"></div>
+      </div>
+
+      <div data-users-panel="customer" style="display:none;">
+        <p class="users-note">從送貨紀錄與客服信箱彙整出的顧客資料，僅供內部參考。</p>
+        <div id="customer-users-list"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/customer-data.js"></script>
 <script src="../assets/js/search.js"></script>
 <script>
-  var listEl = document.getElementById("users-list");
+  var staffListEl = document.getElementById("staff-users-list");
   var users = EchoStaffData.users;
 
-  listEl.innerHTML = Object.keys(users).map(function (key) {
+  staffListEl.innerHTML = Object.keys(users).map(function (key) {
     var u = users[key];
     return (
       '<div class="panel">' +
@@ -78,6 +91,42 @@
       '</div>'
     );
   }).join("");
+
+  var customerListEl = document.getElementById("customer-users-list");
+  var customers = EchoCustomerData.customers;
+
+  customerListEl.innerHTML = customers.map(function (c) {
+    return (
+      '<div class="panel">' +
+        '<div class="profile-head">' +
+          '<div class="avatar">' + c.name.charAt(0) + '</div>' +
+          '<div>' +
+            '<h2>' + c.name + '</h2>' +
+            '<div class="role">顧客</div>' +
+          '</div>' +
+        '</div>' +
+        '<dl class="kv-grid">' +
+          '<dt>電話</dt><dd>' + (c.phone || "—") + '</dd>' +
+          '<dt>Email</dt><dd>' + (c.email || "—") + '</dd>' +
+          '<dt>地址</dt><dd>' + (c.address || "—") + '</dd>' +
+          '<dt>備註</dt><dd>' + c.note + '</dd>' +
+        '</dl>' +
+      '</div>'
+    );
+  }).join("");
+
+  document.querySelectorAll("[data-users-tab]").forEach(function (tab) {
+    tab.addEventListener("click", function (e) {
+      e.preventDefault();
+      var target = tab.getAttribute("data-users-tab");
+      document.querySelectorAll("[data-users-tab]").forEach(function (t) {
+        t.classList.toggle("active", t === tab);
+      });
+      document.querySelectorAll("[data-users-panel]").forEach(function (p) {
+        p.style.display = p.getAttribute("data-users-panel") === target ? "" : "none";
+      });
+    });
+  });
 </script>
 <script src="../assets/js/staff-auth.js"></script>
 </body>

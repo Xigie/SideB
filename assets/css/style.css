@@ -463,7 +463,12 @@ section { padding: 48px 0; }
 }
 .guestbook-form button:hover { background: var(--color-brown); }
 
-.guestbook-list { display: grid; gap: 18px; max-width: 600px; margin: 0 auto; }
+.guestbook-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
 
 .guestbook-post {
   background: var(--color-panel); border: 1px solid var(--color-line); border-radius: var(--radius);
