@@ -430,30 +430,110 @@ section { padding: 48px 0; }
 }
 .info-table th { width: 110px; color: var(--color-ink-soft); font-weight: 500; }
 
-/* ---------- Search page ---------- */
-.search-hero { text-align: center; padding: 40px 0 20px; }
-.search-hero form {
-  display: flex; gap: 8px; max-width: 480px; margin: 20px auto 0;
-}
-.search-hero input[type="search"] {
-  flex: 1; padding: 12px 16px; border-radius: 999px; border: 1px solid var(--color-line); font-size: 0.95rem;
-}
-.search-hero button {
-  padding: 12px 24px; border-radius: 999px; border: none; background: var(--color-maroon); color: #fff; cursor: pointer;
+/* ---------- Guestbook（回憶留言板）---------- */
+.guestbook-form {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto 40px;
 }
 
-.search-meta { text-align: center; color: var(--color-ink-soft); margin-bottom: 30px; font-size: 0.9rem; }
-.search-results { display: grid; gap: 16px; max-width: 700px; margin: 0 auto; }
-.result-item {
+.guestbook-form .field { margin-bottom: 14px; }
+.guestbook-form label {
+  display: block; font-size: 0.85rem; color: var(--color-ink-soft); margin-bottom: 6px;
+}
+.guestbook-form input,
+.guestbook-form textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--color-line); border-radius: 8px;
+  font-family: var(--font-base); font-size: 0.92rem; background: #fff; box-sizing: border-box;
+}
+.guestbook-form textarea { min-height: 90px; resize: vertical; }
+.guestbook-form .hint { font-size: 0.78rem; color: #a89878; margin-top: 4px; }
+
+.guestbook-form button {
+  margin-top: 4px; padding: 10px 26px; border: none; border-radius: 999px;
+  background: var(--color-maroon); color: #fff; font-size: 0.92rem; cursor: pointer;
+}
+.guestbook-form button:hover { background: var(--color-brown); }
+
+.guestbook-list { display: grid; gap: 18px; max-width: 600px; margin: 0 auto; }
+
+.guestbook-post {
   background: var(--color-panel); border: 1px solid var(--color-line); border-radius: var(--radius);
-  padding: 16px 20px;
+  padding: 18px 20px;
 }
-.result-item h3 { margin: 0 0 4px; color: var(--color-brown); }
-.result-item p { margin: 0; font-size: 0.88rem; color: var(--color-ink-soft); }
-.result-item .tag { font-size: 0.72rem; color: #a89878; }
 
-.search-empty { text-align: center; color: var(--color-ink-soft); padding: 40px 0; }
-.search-empty .big { font-size: 2rem; margin-bottom: 10px; }
+.guestbook-post-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
+.guestbook-avatar {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--color-brown), var(--color-maroon));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 700;
+}
+
+.guestbook-name { font-size: 0.92rem; font-weight: 700; color: var(--color-brown); }
+.guestbook-time { font-size: 0.74rem; color: #a89878; }
+.guestbook-text { margin: 0; font-size: 0.92rem; color: var(--color-ink); white-space: pre-wrap; }
+
+.guestbook-photo {
+  margin-top: 12px; width: 100%; max-height: 360px; object-fit: cover;
+  border-radius: 8px; border: 1px solid var(--color-line);
+}
+
+.guestbook-empty { text-align: center; color: var(--color-ink-soft); padding: 30px 0; }
+
+.guestbook-replies {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guestbook-reply {
+  background: var(--color-bg-alt);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.guestbook-reply-name { font-size: 0.82rem; font-weight: 700; color: var(--color-brown); }
+.guestbook-reply-time { font-size: 0.7rem; color: #a89878; margin-left: 8px; }
+.guestbook-reply-text { margin: 4px 0 0; font-size: 0.86rem; color: var(--color-ink); white-space: pre-wrap; }
+
+.guestbook-reply-row { margin-top: 12px; }
+
+.btn-guestbook-reply {
+  border: 1px solid var(--color-line); background: #fff; color: var(--color-brown);
+  padding: 6px 16px; border-radius: 999px; font-size: 0.82rem; cursor: pointer;
+}
+.btn-guestbook-reply:hover { background: var(--color-bg-alt); }
+
+.guestbook-reply-form {
+  margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--color-line);
+}
+.guestbook-reply-form input,
+.guestbook-reply-form textarea {
+  width: 100%; padding: 8px 10px; border: 1px solid var(--color-line); border-radius: 6px;
+  font-family: var(--font-base); font-size: 0.86rem; background: #fff; box-sizing: border-box;
+  margin-bottom: 8px;
+}
+.guestbook-reply-form textarea { min-height: 60px; resize: vertical; }
+
+.guestbook-reply-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.btn-reply-cancel {
+  border: 1px solid var(--color-line); background: #fff; color: var(--color-ink-soft);
+  padding: 6px 14px; border-radius: 6px; font-size: 0.82rem; cursor: pointer;
+}
+.btn-reply-cancel:hover { background: var(--color-bg-alt); }
+.btn-reply-send {
+  border: none; background: var(--color-maroon); color: #fff;
+  padding: 6px 16px; border-radius: 6px; font-size: 0.82rem; cursor: pointer;
+}
+.btn-reply-send:hover { background: var(--color-brown); }
 
 /* ---------- Footer ---------- */
 .site-footer {

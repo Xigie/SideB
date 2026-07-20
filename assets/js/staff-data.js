@@ -22,8 +22,8 @@
       emergencyRelation: "家人",
       emergencyPhone: "0928-XXX-XXX"
     },
-    yueshi: {
-      username: "yueshi",
+    tsukiuta: {
+      username: "tsukiuta",
       password: "echo2024",
       displayName: "月詩",
       roleShort: "門市人員",
@@ -33,7 +33,7 @@
       store: "迴聲唱片行 本店",
       duty: "客服信箱回覆、訂單問題處理、櫃檯服務",
       phone: "0928-XXX-XXX",
-      email: "yue.shi@sideb-records.com",
+      email: "tsukiuta@sideb-records.com",
       avatarInitial: "月",
       emergencyName: "時音",
       emergencyRelation: "家人",

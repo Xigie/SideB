@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>提供服務 —— Side B 唱片行</title>
+<title>回憶留言板 —— Side B 唱片行</title>
 <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body data-depth="0">
@@ -26,7 +26,7 @@
     <nav class="main-nav">
       <ul>
         <li class="nav-item"><a href="index.html" class="nav-link">首頁</a></li>
-        <li class="nav-item"><a href="services.html" class="nav-link active">提供服務</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link">提供服務</a></li>
         <li class="nav-item has-dropdown">
           <a href="products/index.html" class="nav-link">線上購物</a>
           <ul class="dropdown">
@@ -40,7 +40,7 @@
           </ul>
         </li>
         <li class="nav-item"><a href="about.html" class="nav-link">關於我們</a></li>
-        <li class="nav-item"><a href="memories.html" class="nav-link">回憶留言板</a></li>
+        <li class="nav-item"><a href="memories.html" class="nav-link active">回憶留言板</a></li>
       </ul>
     </nav>
   </div>
@@ -48,57 +48,30 @@
 
 <section>
   <div class="container">
-    <nav class="breadcrumb"><a href="index.html">首頁</a> / 提供服務</nav>
-    <h2 class="section-title">提供服務</h2>
-    <p class="section-desc">除了買賣唱片，我們也提供以下服務，歡迎親自到店洽詢或來信詢問。</p>
+    <nav class="breadcrumb"><a href="index.html">首頁</a> / 回憶留言板</nav>
+    <h2 class="section-title">回憶留言板</h2>
+    <p class="section-desc">
+      留下一段你和這間店、或者和某張唱片之間的故事。想附一張照片的話，貼上圖片網址即可。
+    </p>
 
-    <div class="service-list">
-      <div class="service-item">
-        <div class="icon">🎧</div>
-        <h3>黑膠試聽</h3>
-        <p>店內設有兩組試聽座，購買前可先試聽再決定，開放營業時間內自由使用。</p>
+    <form class="guestbook-form" id="guestbook-form">
+      <div class="field">
+        <label for="gb-name">暱稱（不填就是匿名）</label>
+        <input type="text" id="gb-name" name="name" maxlength="30" placeholder="你的暱稱" />
       </div>
-      <div class="service-item">
-        <div class="icon">💰</div>
-        <h3>老件收購</h3>
-        <p>收購黑膠、CD、卡帶、錄影帶等二手影音藏品，可攜帶實品到店估價，或先來信附照片詢問。</p>
+      <div class="field">
+        <label for="gb-text">留言內容</label>
+        <textarea id="gb-text" name="text" maxlength="400" placeholder="寫點什麼……" required></textarea>
       </div>
-      <div class="service-item">
-        <div class="icon">🔧</div>
-        <h3>設備維修</h3>
-        <p>提供黑膠唱盤、卡座等播放設備的基礎檢修與保養，維修前會先報價。</p>
+      <div class="field">
+        <label for="gb-photo">照片網址（選填）</label>
+        <input type="url" id="gb-photo" name="photo" placeholder="https://..." />
+        <div class="hint">目前還不支援直接上傳檔案，如果有想放的照片，先貼圖床連結。</div>
       </div>
-      <div class="service-item">
-        <div class="icon">🌏</div>
-        <h3>海外代購</h3>
-        <p>協助代購海外絕版盤、限定版與獨立廠牌發行，需先確認庫存與運費再下單。</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🖼️</div>
-        <h3>老件修復</h3>
-        <p>針對外殼破損、內頁泛黃等狀況提供基礎修復諮詢，實際可修復程度依現況而定。</p>
-      </div>
-      <div class="service-item">
-        <div class="icon">🎁</div>
-        <h3>客製化包裝</h3>
-        <p>送禮用途可加購牛皮紙包裝與手寫卡片，下單時於備註欄註明即可。</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <button type="submit">送出留言</button>
+    </form>
 
-<section>
-  <div class="container">
-    <div class="about-block" style="grid-template-columns:1fr; max-width:640px;">
-      <div>
-        <h2 class="section-title">服務洽詢方式</h2>
-        <table class="info-table">
-          <tr><th>電話</th><td>02-2599-XXXX（營業時間內）</td></tr>
-          <tr><th>電子郵件</th><td>service@sideb-records.com</td></tr>
-          <tr><th>到店時間</th><td>週二～週日 13:00–21:00</td></tr>
-        </table>
-      </div>
-    </div>
+    <div class="guestbook-list" id="guestbook-list"></div>
   </div>
 </section>
 
@@ -149,5 +122,37 @@
 
 <script src="../assets/js/nav.js"></script>
 <script src="../assets/js/search.js"></script>
+<script src="../assets/js/guestbook.js"></script>
+<script>
+  var SEED_MEMORIES = [
+    {
+      id: "seed-1",
+      name: "阿哲",
+      time: "2026-07-12 21:40",
+      text: "上禮拜來試聽了《谷底》，坐在試聽區坐到快打烊，謝謝店員沒有趕我走。",
+      photo: null
+    },
+    {
+      id: "seed-2",
+      name: "小魚",
+      time: "2026-07-05 16:05",
+      text: "把阿嬤留下的一批黑膠拿來估價，老闆很有耐心地一張一張看，最後還跟我聊了很久那個年代的事，謝謝你們。",
+      photo: null
+    },
+    {
+      id: "seed-3",
+      name: "匿名",
+      time: "2026-06-28 19:15",
+      text: "第一次來，發現卡帶區藏了很多沒聽過的獨立廠牌，挖到寶的感覺。",
+      photo: null
+    }
+  ];
+
+  GuestbookApp.init({
+    listSelector: "#guestbook-list",
+    formSelector: "#guestbook-form",
+    seed: SEED_MEMORIES
+  });
+</script>
 </body>
 </html>
