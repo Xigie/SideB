@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>員工登入 —— Side B 唱片行</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-page="staff-login">
+
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="sys-title">ECHO RECORDS · STAFF SYSTEM</div>
+    <h1>員工登入</h1>
+
+    <div class="login-error" id="login-error">帳號或密碼錯誤，請再試一次。</div>
+
+    <form id="login-form">
+      <div class="field">
+        <label for="login-user">帳號</label>
+        <input type="text" id="login-user" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="login-pass">密碼</label>
+        <input type="password" id="login-pass" autocomplete="current-password" required />
+      </div>
+      <button type="submit">登入</button>
+    </form>
+
+  </div>
+  <a class="back-to-site" href="../shop/index.html">← 返回官方網站</a>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>電子郵件 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="1">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="../index.html">總覽</a>
+      <a href="../profile.html">個人資訊</a>
+      <a href="../attendance.html">出勤紀錄</a>
+      <a href="../diary.html">工作日記</a>
+      <a href="../products.html">商品紀錄</a>
+      <a href="../delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="work.html" class="sub-link">工作內容</a>
+      <a href="service.html" class="sub-link">客服內容</a>
+      <a href="sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>電子郵件</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content">
+      <div class="panel">
+        <div class="mail-tabs">
+          <a href="work.html">工作內容</a>
+          <a href="service.html">客服內容</a>
+          <a href="sent.html">寄件備份</a>
+        </div>
+        <p style="color:var(--s-ink-soft); font-size:0.9rem;">
+          請從上方分類選擇要查看的信件：內部工作聯絡歸在「工作內容」，
+          客人來信與訂單相關問題歸在「客服內容」，已送出的回覆則會統整在「寄件備份」。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/staff-data.js"></script>
+<script src="../../assets/js/search.js"></script>
+<script src="../../assets/js/staff-auth.js"></script>
+</body>
+</html>

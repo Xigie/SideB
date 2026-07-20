@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>總覽 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="0">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="index.html" class="active">總覽</a>
+      <a href="profile.html">個人資訊</a>
+      <a href="attendance.html">出勤紀錄</a>
+      <a href="diary.html">工作日記</a>
+      <a href="products.html">商品紀錄</a>
+      <a href="delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="mail/work.html" class="sub-link">工作內容</a>
+      <a href="mail/service.html" class="sub-link">客服內容</a>
+      <a href="mail/sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>總覽</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content">
+      <div class="panel">
+        <h2>今日提醒</h2>
+        <table class="data-table">
+          <tr><td>13:00 開店，確認試聽區設備電源</td><td><span class="status-pill ok">已完成</span></td></tr>
+          <tr><td>下午到貨：黑膠 2 箱、CD 1 箱，需點收上架</td><td><span class="status-pill warn">待處理</span></td></tr>
+          <tr><td>回覆客服信件（2 封未讀）</td><td><span class="status-pill warn">待處理</span></td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>本月出勤概況</h2>
+        <table class="data-table">
+          <tr><th>本月已上班</th><th>請假</th><th>遲到</th></tr>
+          <tr><td>14 天</td><td>0 天</td><td>1 次</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>快速連結</h2>
+        <table class="data-table">
+          <tr><td><a href="diary.html">查看工作日記</a></td></tr>
+          <tr><td><a href="products.html">查看商品紀錄</a></td></tr>
+          <tr><td><a href="delivery.html">查看送貨紀錄</a></td></tr>
+          <tr><td><a href="mail/index.html">前往電子郵件</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

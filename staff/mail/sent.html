@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>寄件備份 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="1">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="../index.html">總覽</a>
+      <a href="../profile.html">個人資訊</a>
+      <a href="../attendance.html">出勤紀錄</a>
+      <a href="../diary.html">工作日記</a>
+      <a href="../products.html">商品紀錄</a>
+      <a href="../delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="work.html" class="sub-link">工作內容</a>
+      <a href="service.html" class="sub-link">客服內容</a>
+      <a href="sent.html" class="sub-link active">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>電子郵件 · 寄件備份</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content" style="max-width:none;">
+      <div class="panel">
+        <div class="mail-tabs">
+          <a href="work.html">工作內容</a>
+          <a href="service.html">客服內容</a>
+          <a href="sent.html" class="active">寄件備份</a>
+        </div>
+
+        <div class="app-shell">
+          <div class="list-pane" id="sent-list"></div>
+          <div class="detail-pane" id="sent-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/staff-data.js"></script>
+<script src="../../assets/js/search.js"></script>
+<script src="../../assets/js/mail-app.js"></script>
+<script>
+  var profile = EchoStaffData.currentProfile();
+
+  MailApp.initSent({
+    listSelector: "#sent-list",
+    detailSelector: "#sent-detail",
+    staffFrom: profile.displayName,
+    staffEmail: profile.email,
+    emptyHtml: '<div class="detail-empty">選擇左側的紀錄以查看完整回覆內容</div>'
+  });
+</script>
+<script src="../../assets/js/staff-auth.js"></script>
+</body>
+</html>

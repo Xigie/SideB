@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工作日記 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="0">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="index.html">總覽</a>
+      <a href="profile.html">個人資訊</a>
+      <a href="attendance.html">出勤紀錄</a>
+      <a href="diary.html" class="active">工作日記</a>
+      <a href="products.html">商品紀錄</a>
+      <a href="delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="mail/work.html" class="sub-link">工作內容</a>
+      <a href="mail/service.html" class="sub-link">客服內容</a>
+      <a href="mail/sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>工作日記</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content" style="max-width:none;">
+      <div class="panel">
+        <div class="app-shell">
+          <div class="list-pane" id="diary-list"></div>
+          <div class="detail-pane" id="diary-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/list-detail.js"></script>
+<script>
+  var DIARIES = {
+    staff: [
+      {
+        id: 1,
+        date: "2026-07-19（日）",
+        title: "假日人潮較多",
+        body: [
+          "週末下午試聽區幾乎全滿，黑膠新品《潮間帶》詢問度很高，剩下的現貨先移到櫃檯後方保留。",
+          "晚上關店前確認過試聽耳機都有歸位。"
+        ]
+      },
+      {
+        id: 2,
+        date: "2026-07-17（五）",
+        title: "到貨點收",
+        body: [
+          "下午收到兩箱黑膠與一箱 CD，數量與出貨單相符，已依分類上架。",
+          "錄音帶區的展示架有點鬆動，先用膠帶暫時固定，下週請店長叫人來修。"
+        ]
+      },
+      {
+        id: 3,
+        date: "2026-07-15（三）",
+        title: "客人詢問收購",
+        body: [
+          "有位客人帶了一批舊卡帶來問收購，其中幾捲外殼有點發黃但可播放，先請對方留下聯絡方式，等店長回來估價。"
+        ]
+      },
+      {
+        id: 4,
+        date: "2026-07-12（日）",
+        title: "調整周邊展示",
+        body: [
+          "把周邊區的明信片組換到比較顯眼的位置，帆布提袋庫存偏低，記得在商品紀錄裡標註要補貨。"
+        ]
+      },
+      {
+        id: 5,
+        date: "2026-07-09（四）",
+        title: "一般開店",
+        body: [
+          "今天沒什麼特別的事，照常開店、整理試聽區、下午核對出貨單。"
+        ]
+      }
+    ],
+    yueshi: [
+      {
+        id: 1,
+        date: "2026-07-19（日）",
+        title: "黑膠試聽活動",
+        body: [
+          "今天下午辦了臨時的黑膠試聽活動，比預期還多人來，準備的茶點提早發完，下次要多準備一點。",
+          "活動結束後留下來的幾位客人聊了滿久，感覺對《谷底》這張特別有興趣。"
+        ]
+      },
+      {
+        id: 2,
+        date: "2026-07-16（四）",
+        title: "處理一起配送客訴",
+        body: [
+          "有位客人來信說訂單地址寫錯、貨被退回，語氣有點不耐煩，先跟對方道歉並確認正確地址，答應加速重新出貨。",
+          "跟時音提了一下，之後地址欄位可能要加個提醒文字，減少漏填的狀況。"
+        ]
+      },
+      {
+        id: 3,
+        date: "2026-07-14（二）",
+        title: "早班交接",
+        body: [
+          "早上跟時音交班，她說錄音帶區的架子有點鬆，我這邊先用比較重的商品壓著，等維修的人來看。",
+          "下午客人不多，整理了一下客服信箱，把還沒回的信都清掉了。"
+        ]
+      },
+      {
+        id: 4,
+        date: "2026-07-11（六）",
+        title: "教新工讀生用結帳機",
+        body: [
+          "新來的工讀生今天第一天上班，帶他熟悉了結帳流程跟退換貨規則，動作還有點慢但態度不錯。",
+          "黑膠試聽區的耳機記得要提醒客人歸位，不然常常會被亂放。"
+        ]
+      },
+      {
+        id: 5,
+        date: "2026-07-08（三）",
+        title: "一般接班",
+        body: [
+          "今天沒什麼特別的事，整理了客服信箱，回了幾封詢問庫存的信。"
+        ]
+      }
+    ]
+  };
+
+  var ENTRIES = DIARIES[EchoStaffData.currentUsername()] || DIARIES.staff;
+
+  var items = ENTRIES.map(function (e) {
+    return {
+      id: e.id,
+      listHtml:
+        '<div class="item-main">' +
+          '<div class="item-top"><span class="item-date">' + e.date + '</span></div>' +
+          '<div class="item-title">' + e.title + '</div>' +
+          '<div class="item-sub">' + e.body[0] + '</div>' +
+        '</div>',
+      detailHtml:
+        '<div class="detail-header">' +
+          '<h2>' + e.title + '</h2>' +
+          '<div class="detail-meta"><div><span class="label">日期</span>' + e.date + '</div></div>' +
+        '</div>' +
+        '<div class="detail-body">' + e.body.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div>'
+    };
+  });
+
+  ListDetailApp({
+    listSelector: "#diary-list",
+    detailSelector: "#diary-detail",
+    items: items,
+    emptyHtml: '<div class="detail-empty">選擇左側的日期以查看該篇日記</div>'
+  });
+</script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

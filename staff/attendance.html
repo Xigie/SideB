@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>出勤紀錄 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="0">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="index.html">總覽</a>
+      <a href="profile.html">個人資訊</a>
+      <a href="attendance.html" class="active">出勤紀錄</a>
+      <a href="diary.html">工作日記</a>
+      <a href="products.html">商品紀錄</a>
+      <a href="delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="mail/work.html" class="sub-link">工作內容</a>
+      <a href="mail/service.html" class="sub-link">客服內容</a>
+      <a href="mail/sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>出勤紀錄</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content">
+      <div class="panel">
+        <h2>2026 年 7 月</h2>
+        <table class="data-table">
+          <tr><th>日期</th><th>上班</th><th>下班</th><th>狀態</th></tr>
+          <tbody id="attendance-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/search.js"></script>
+<script>
+  var ATTENDANCE = {
+    staff: [
+      { date: "07/14（二）", in: "12:58", out: "21:03", status: "ok", label: "正常" },
+      { date: "07/15（三）", in: "13:00", out: "21:00", status: "ok", label: "正常" },
+      { date: "07/16（四）", in: "13:12", out: "21:05", status: "warn", label: "遲到 12 分" },
+      { date: "07/17（五）", in: "12:55", out: "21:10", status: "ok", label: "正常" },
+      { date: "07/18（六）", in: "12:59", out: "21:32", status: "ok", label: "正常（延長營業）" },
+      { date: "07/19（日）", in: "13:01", out: "21:02", status: "ok", label: "正常" },
+      { date: "07/20（一）", in: "—", out: "—", status: "bad", label: "公休" }
+    ],
+    yueshi: [
+      { date: "07/14（二）", in: "13:02", out: "21:05", status: "ok", label: "正常" },
+      { date: "07/15（三）", in: "—", out: "—", status: "bad", label: "排休" },
+      { date: "07/16（四）", in: "12:58", out: "21:00", status: "ok", label: "正常" },
+      { date: "07/17（五）", in: "13:05", out: "21:15", status: "warn", label: "遲到 5 分" },
+      { date: "07/18（六）", in: "13:00", out: "21:30", status: "ok", label: "正常（延長營業）" },
+      { date: "07/19（日）", in: "12:55", out: "21:03", status: "ok", label: "正常" },
+      { date: "07/20（一）", in: "—", out: "—", status: "bad", label: "公休" }
+    ]
+  };
+
+  var rows = ATTENDANCE[EchoStaffData.currentUsername()] || ATTENDANCE.staff;
+  document.getElementById("attendance-rows").innerHTML = rows.map(function (r) {
+    return (
+      "<tr><td class=\"mono\">" + r.date + "</td>" +
+      "<td class=\"mono\">" + r.in + "</td>" +
+      "<td class=\"mono\">" + r.out + "</td>" +
+      "<td><span class=\"status-pill " + r.status + "\">" + r.label + "</span></td></tr>"
+    );
+  }).join("");
+</script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

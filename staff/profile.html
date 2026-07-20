@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>個人資訊 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="0">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="index.html">總覽</a>
+      <a href="profile.html" class="active">個人資訊</a>
+      <a href="attendance.html">出勤紀錄</a>
+      <a href="diary.html">工作日記</a>
+      <a href="products.html">商品紀錄</a>
+      <a href="delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="mail/work.html" class="sub-link">工作內容</a>
+      <a href="mail/service.html" class="sub-link">客服內容</a>
+      <a href="mail/sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>個人資訊</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content">
+      <div class="panel">
+        <div class="profile-head">
+          <div class="avatar" id="p-avatar"></div>
+          <div>
+            <h2 id="p-name"></h2>
+            <div class="role" id="p-role"></div>
+          </div>
+        </div>
+        <dl class="kv-grid">
+          <dt>員工編號</dt><dd id="p-id"></dd>
+          <dt>到職日期</dt><dd id="p-join"></dd>
+          <dt>所屬門市</dt><dd id="p-store"></dd>
+          <dt>職務</dt><dd id="p-duty"></dd>
+          <dt>聯絡電話</dt><dd id="p-phone"></dd>
+          <dt>內部信箱</dt><dd id="p-email"></dd>
+        </dl>
+      </div>
+
+      <div class="panel">
+        <h2>緊急聯絡人</h2>
+        <dl class="kv-grid">
+          <dt>姓名</dt><dd id="p-emg-name"></dd>
+          <dt>關係</dt><dd id="p-emg-relation"></dd>
+          <dt>電話</dt><dd id="p-emg-phone"></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/search.js"></script>
+<script>
+  var p = EchoStaffData.currentProfile();
+  document.getElementById("p-avatar").textContent = p.avatarInitial;
+  document.getElementById("p-name").textContent = p.displayName;
+  document.getElementById("p-role").textContent = p.roleDetail;
+  document.getElementById("p-id").textContent = p.employeeId;
+  document.getElementById("p-join").textContent = p.joinDate;
+  document.getElementById("p-store").textContent = p.store;
+  document.getElementById("p-duty").textContent = p.duty;
+  document.getElementById("p-phone").textContent = p.phone;
+  document.getElementById("p-email").textContent = p.email;
+  document.getElementById("p-emg-name").textContent = p.emergencyName;
+  document.getElementById("p-emg-relation").textContent = p.emergencyRelation;
+  document.getElementById("p-emg-phone").textContent = p.emergencyPhone;
+</script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

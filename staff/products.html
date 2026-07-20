@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>商品紀錄 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="0">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="index.html">總覽</a>
+      <a href="profile.html">個人資訊</a>
+      <a href="attendance.html">出勤紀錄</a>
+      <a href="diary.html">工作日記</a>
+      <a href="products.html" class="active">商品紀錄</a>
+      <a href="delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="mail/work.html" class="sub-link">工作內容</a>
+      <a href="mail/service.html" class="sub-link">客服內容</a>
+      <a href="mail/sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>商品紀錄</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content">
+      <div class="panel">
+        <h2>庫存異動紀錄</h2>
+        <table class="data-table">
+          <tr><th>日期</th><th>品號</th><th>品名</th><th>異動</th><th>備註</th></tr>
+          <tr><td class="mono">07/17</td><td class="mono">ER-V001</td><td>《潮間帶》黑膠</td><td>+20</td><td>新到貨上架</td></tr>
+          <tr><td class="mono">07/17</td><td class="mono">ER-C003</td><td>《收費站》CD</td><td>+15</td><td>新到貨上架</td></tr>
+          <tr><td class="mono">07/15</td><td class="mono">ER-G001</td><td>帆布提袋</td><td>-6</td><td>週末銷售</td></tr>
+          <tr><td class="mono">07/12</td><td class="mono">ER-G001</td><td>帆布提袋</td><td>庫存偏低</td><td><span class="status-pill warn">待補貨</span></td></tr>
+          <tr><td class="mono">07/10</td><td class="mono">ER-K006</td><td>《雜訊》卡帶版</td><td>-3</td><td>寄售品售出</td></tr>
+          <tr><td class="mono">07/08</td><td class="mono">ER-V005</td><td>《頻率外》限量彩膠</td><td>+8</td><td>限量到貨，售完不補</td></tr>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>待補貨清單</h2>
+        <table class="data-table">
+          <tr><th>品號</th><th>品名</th><th>目前庫存</th></tr>
+          <tr><td class="mono">ER-G001</td><td>帆布提袋</td><td>2</td></tr>
+          <tr><td class="mono">ER-G003</td><td>唱片防塵內套</td><td>5</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

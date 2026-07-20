@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>送貨紀錄 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="0">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="index.html">總覽</a>
+      <a href="profile.html">個人資訊</a>
+      <a href="attendance.html">出勤紀錄</a>
+      <a href="diary.html">工作日記</a>
+      <a href="products.html">商品紀錄</a>
+      <a href="delivery.html" class="active">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="mail/work.html" class="sub-link">工作內容</a>
+      <a href="mail/service.html" class="sub-link">客服內容</a>
+      <a href="mail/sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>送貨紀錄</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content" style="max-width:none;">
+      <div class="panel">
+        <div class="app-shell">
+          <div class="list-pane" id="delivery-list"></div>
+          <div class="detail-pane" id="delivery-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/staff-data.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/list-detail.js"></script>
+<script>
+  var STATUS_LABEL = { ok: "已送達", warn: "配送中", bad: "配送異常" };
+
+  var ORDERS = [
+    {
+      id: "ORD-2607190",
+      date: "07/19",
+      recipient: "王先生",
+      phone: "0921-XXX-101",
+      email: "wang.customer@mail.com",
+      address: "台北市大安區敦化南路一段 XX 號 3 樓",
+      items: "ER-V002 ×1（《谷底》黑膠）",
+      status: "ok",
+      note: null
+    },
+    {
+      id: "ORD-2607181",
+      date: "07/18",
+      recipient: "林小姐",
+      phone: "0955-XXX-182",
+      email: "lin.hsiaojie@mail.com",
+      address: "新北市板橋區文化路二段 XX 號 5 樓",
+      items: "ER-C001 ×2（《夜光生物》CD）、ER-G004 ×1（Logo 徽章）",
+      status: "ok",
+      note: null
+    },
+    {
+      id: "ORD-2607182",
+      date: "07/18",
+      recipient: "Y. Huang",
+      phone: "0966-XXX-183",
+      email: "y.huang@mail.com",
+      address: "台中市西屯區台灣大道三段 XX 號",
+      items: "ER-V005 ×1（《頻率外》限量彩膠）",
+      status: "warn",
+      note: "限量商品，出貨已加保價，麻煩留意配送狀態更新。"
+    },
+    {
+      id: "ORD-2607160",
+      date: "07/16",
+      recipient: "陳同學",
+      phone: "0988-XXX-160",
+      email: "chen.student@mail.com",
+      address: "台北市文山區木柵路一段 XX 號",
+      items: "ER-K001 ×1（《零點過後》卡帶）",
+      status: "ok",
+      note: null
+    },
+    {
+      id: "ORD-2607150",
+      date: "07/15",
+      recipient: "徐小姐",
+      phone: "0912-XXX-150",
+      email: "hsu.customer@mail.com",
+      address: "高雄市左營區博愛二路 XX 號（樓層未填，待補）",
+      items: "ER-D002 ×1（巡迴紀錄片 DVD）",
+      status: "bad",
+      note: "地址不完整，物流退回，已聯繫客人補件，等待新地址後重新出貨。"
+    }
+  ];
+
+  var items = ORDERS.map(function (o) {
+    return {
+      id: o.id,
+      listHtml:
+        '<div class="item-main">' +
+          '<div class="item-top"><span class="item-from">' + o.id + '</span><span class="item-date">' + o.date + '</span></div>' +
+          '<div class="item-title">' + o.recipient + '</div>' +
+          '<div class="item-sub">' + o.items + '</div>' +
+          '<span class="status-pill ' + o.status + '" style="margin-top:6px; display:inline-block;">' + STATUS_LABEL[o.status] + '</span>' +
+        '</div>',
+      detailHtml:
+        '<div class="detail-header">' +
+          '<h2>' + o.id + '</h2>' +
+          '<div class="detail-meta">' +
+            '<div><span class="label">收件人</span>' + o.recipient + '</div>' +
+            '<div><span class="label">日期</span>' + o.date + '</div>' +
+            '<div><span class="label">狀態</span><span class="status-pill ' + o.status + '">' + STATUS_LABEL[o.status] + '</span></div>' +
+          '</div>' +
+        '</div>' +
+        '<dl class="detail-contact">' +
+          '<dt>電話</dt><dd>' + o.phone + '</dd>' +
+          '<dt>電子郵件</dt><dd>' + o.email + '</dd>' +
+          '<dt>地址</dt><dd>' + o.address + '</dd>' +
+        '</dl>' +
+        '<div class="detail-items">' +
+          '<span class="label">寄送品項</span>' + o.items +
+        '</div>' +
+        (o.note ? '<div class="detail-note">' + o.note + '</div>' : '')
+    };
+  });
+
+  ListDetailApp({
+    listSelector: "#delivery-list",
+    detailSelector: "#delivery-detail",
+    items: items,
+    emptyHtml: '<div class="detail-empty">選擇左側的訂單以查看收件資訊</div>'
+  });
+</script>
+<script src="../assets/js/staff-auth.js"></script>
+</body>
+</html>

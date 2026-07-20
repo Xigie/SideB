@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>客服內容 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="1">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="../index.html">總覽</a>
+      <a href="../profile.html">個人資訊</a>
+      <a href="../attendance.html">出勤紀錄</a>
+      <a href="../diary.html">工作日記</a>
+      <a href="../products.html">商品紀錄</a>
+      <a href="../delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="work.html" class="sub-link">工作內容</a>
+      <a href="service.html" class="sub-link active">客服內容</a>
+      <a href="sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>電子郵件 · 客服內容</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content" style="max-width:none;">
+      <div class="panel">
+        <div class="mail-tabs">
+          <a href="work.html">工作內容</a>
+          <a href="service.html" class="active">客服內容</a>
+          <a href="sent.html">寄件備份</a>
+        </div>
+
+        <div class="app-shell">
+          <div class="list-pane" id="mail-list"></div>
+          <div class="detail-pane" id="mail-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/staff-data.js"></script>
+<script src="../../assets/js/search.js"></script>
+<script src="../../assets/js/mail-app.js"></script>
+<script>
+  var MAILS = [
+    {
+      id: 1,
+      unread: true,
+      sender: "王先生",
+      email: "wang.customer@mail.com",
+      subject: "詢問《谷底》黑膠是否還有現貨",
+      date: "07/19",
+      fullDate: "2026-07-19 15:10",
+      preview: "請問迴音谷的《谷底》黑膠還有現貨嗎，想確認再下單……",
+      body: [
+        "你好，請問迴音谷的《谷底》黑膠還有現貨嗎？想確認庫存足夠再下單，謝謝。"
+      ]
+    },
+    {
+      id: 2,
+      unread: true,
+      sender: "林小姐",
+      email: "lin.hsiaojie@mail.com",
+      subject: "訂單 ORD-2607181 已到貨",
+      date: "07/18",
+      fullDate: "2026-07-18 20:47",
+      preview: "東西收到了，包裝得很好，謝謝，想再請問徽章有沒有其他款式……",
+      body: [
+        "東西收到了，包裝得很好，謝謝！",
+        "想再請問徽章除了現在買的這款，還有沒有其他款式呢？"
+      ]
+    },
+    {
+      id: 3,
+      unread: false,
+      sender: "徐小姐",
+      email: "hsu.customer@mail.com",
+      subject: "關於配送地址錯誤",
+      date: "07/15",
+      fullDate: "2026-07-15 11:03",
+      preview: "我的訂單地址少打了樓層，麻煩幫忙補上……",
+      body: [
+        "不好意思，我的訂單（ORD-2607150）地址少打了樓層，物流說要退回，麻煩幫忙補上地址後重新出貨，謝謝。"
+      ]
+    },
+    {
+      id: 4,
+      unread: false,
+      sender: "匿名客人",
+      email: "unknown@mail.com",
+      subject: "老件收購詢問（附照片）",
+      date: "07/14",
+      fullDate: "2026-07-14 13:55",
+      preview: "家裡有一批舊卡帶想請你們估價，附上照片……",
+      body: [
+        "家裡有一批舊卡帶想請你們估價，數量大概 30 幾捲，附上照片，方便的話麻煩回覆大概什麼時候可以帶過去給你們看，謝謝。"
+      ]
+    },
+    {
+      id: 5,
+      unread: false,
+      sender: "Y. Huang",
+      email: "y.huang@mail.example",
+      subject: "詢問限量彩膠出貨進度",
+      date: "07/13",
+      fullDate: "2026-07-13 09:22",
+      preview: "請問《頻率外》限量彩膠的訂單大概什麼時候會出貨呢……",
+      body: [
+        "請問《頻率外》限量彩膠的訂單（ORD-2607182）大概什麼時候會出貨呢？想確認一下，謝謝。"
+      ]
+    }
+  ];
+
+  var profile = EchoStaffData.currentProfile();
+
+  MailApp.initMailbox({
+    mailbox: "service",
+    mails: MAILS,
+    listSelector: "#mail-list",
+    detailSelector: "#mail-detail",
+    toAddr: "客服信箱 &lt;service@echo-records.example&gt;",
+    staffFrom: profile.displayName,
+    staffEmail: profile.email,
+    emptyHtml: '<div class="detail-empty">選擇左側的信件以查看完整內容</div>'
+  });
+</script>
+<script src="../../assets/js/staff-auth.js"></script>
+</body>
+</html>

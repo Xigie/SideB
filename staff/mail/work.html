@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工作內容 —— Side B 唱片行員工系統</title>
+<link rel="stylesheet" href="../../assets/css/staff.css" />
+</head>
+<body class="staff" data-staff-guard="true" data-depth="1">
+
+<div class="staff-shell">
+  <aside class="staff-sidebar">
+    <a href="../../shop/index.html" class="brand">Side B 唱片行</a>
+    <div class="brand-sub">STAFF SYSTEM</div>
+    <nav>
+      <a href="../index.html">總覽</a>
+      <a href="../profile.html">個人資訊</a>
+      <a href="../attendance.html">出勤紀錄</a>
+      <a href="../diary.html">工作日記</a>
+      <a href="../products.html">商品紀錄</a>
+      <a href="../delivery.html">送貨紀錄</a>
+      <div class="group-label">電子郵件</div>
+      <a href="work.html" class="sub-link active">工作內容</a>
+      <a href="service.html" class="sub-link">客服內容</a>
+      <a href="sent.html" class="sub-link">寄件備份</a>
+    </nav>
+    <div class="logout">
+      <a href="#" data-logout>登出</a>
+    </div>
+  </aside>
+
+  <div class="staff-main">
+    <div class="staff-topbar">
+      <h1>電子郵件 · 工作內容</h1>
+      <div class="search-box">
+        <form>
+          <input type="search" placeholder="搜尋商品、資訊…" />
+          <button type="submit" aria-label="搜尋">🔍</button>
+        </form>
+      </div>
+      <div class="whoami"></div>
+    </div>
+
+    <div class="staff-content" style="max-width:none;">
+      <div class="panel">
+        <div class="mail-tabs">
+          <a href="work.html" class="active">工作內容</a>
+          <a href="service.html">客服內容</a>
+          <a href="sent.html">寄件備份</a>
+        </div>
+
+        <div class="app-shell">
+          <div class="list-pane" id="mail-list"></div>
+          <div class="detail-pane" id="mail-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/staff-data.js"></script>
+<script src="../../assets/js/search.js"></script>
+<script src="../../assets/js/mail-app.js"></script>
+<script>
+  var MAILS_BY_USER = {
+    staff: [
+      {
+        id: 1,
+        unread: true,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "本週排班確認",
+        date: "07/18",
+        fullDate: "2026-07-18 14:32",
+        preview: "麻煩再確認一下這週五、六的排班，目前排的是你跟阿凱兩位……",
+        body: [
+          "時音你好，",
+          "麻煩再確認一下這週五、六的排班，目前排的是你跟阿凱兩位，如果有要調班的話這兩天跟我說一聲，我再重新調整。",
+          "另外週六那天因為有寄售客人要來對帳，麻煩留意一下現金抽屜的核對，謝謝。",
+          "店長"
+        ]
+      },
+      {
+        id: 2,
+        unread: true,
+        sender: "總公司採購部",
+        email: "purchasing@sideb-records.com",
+        subject: "8 月新品到貨清單",
+        date: "07/17",
+        fullDate: "2026-07-17 10:05",
+        preview: "附上八月預計到貨的黑膠與 CD 清單，數量以實際到貨為準……",
+        body: [
+          "各位夥伴好，",
+          "附上八月預計到貨的黑膠與 CD 清單，包含《谷底》二刷、《遷徙》黑膠，以及三張新進 CD，實際到貨數量與日期會依供應商出貨狀況調整，屆時會再另行通知。",
+          "麻煩門市先預留展示空間，謝謝。",
+          "採購部"
+        ]
+      },
+      {
+        id: 3,
+        unread: false,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "關於延長營業時間",
+        date: "07/15",
+        fullDate: "2026-07-15 18:20",
+        preview: "這個週末試辦延長營業到 21:30，麻煩留意打烊流程……",
+        body: [
+          "這個週末（7/18–7/19）試辦延長營業到 21:30，晚一點打烊麻煩注意一下：",
+          "1. 試聽區設備記得確認電源都有關　2. 現金核對照常　3. 有任何狀況直接打我手機",
+          "辛苦了。"
+        ]
+      },
+      {
+        id: 4,
+        unread: false,
+        sender: "設備維修行",
+        email: "service@turntable-fix.example",
+        subject: "唱盤維修報價回覆",
+        date: "07/12",
+        fullDate: "2026-07-12 09:41",
+        preview: "關於店內二號試聽座唱盤的檢修，報價如下……",
+        body: [
+          "您好，",
+          "關於店內二號試聽座唱盤的檢修，初步判斷是唱臂軸承磨損，需更換零件，報價 NT$1,800（含工資），預計 3 個工作天可完成。",
+          "確認後麻煩回信告知，我們會安排到店收件。",
+          "維修行 敬上"
+        ]
+      },
+      {
+        id: 5,
+        unread: false,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "月底盤點提醒",
+        date: "07/10",
+        fullDate: "2026-07-10 16:15",
+        preview: "提醒大家這個月底要做全店盤點，麻煩提早整理好各分類的庫存……",
+        body: [
+          "提醒大家這個月底（7/31）要做全店盤點，麻煩提早整理好各分類的庫存，尤其是黑膠跟周邊區，之前盤點常常對不起來。",
+          "盤點當天會提早半小時開始，麻煩準時到。"
+        ]
+      }
+    ],
+    yueshi: [
+      {
+        id: 1,
+        unread: true,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "這週六加開試聽活動",
+        date: "07/17",
+        fullDate: "2026-07-17 11:20",
+        preview: "這週六下午想臨時加開一場黑膠試聽活動，想請你幫忙主持……",
+        body: [
+          "月詩你好，",
+          "這週六下午想臨時加開一場黑膠試聽活動，主要是配合《谷底》這張新到貨，想請你幫忙主持跟準備茶點，時音那天會協助補位顧櫃檯。",
+          "細節我們週五再對一次，謝謝。",
+          "店長"
+        ]
+      },
+      {
+        id: 2,
+        unread: true,
+        sender: "總公司採購部",
+        email: "purchasing@sideb-records.com",
+        subject: "8 月新品到貨清單",
+        date: "07/17",
+        fullDate: "2026-07-17 10:05",
+        preview: "附上八月預計到貨的黑膠與 CD 清單，數量以實際到貨為準……",
+        body: [
+          "各位夥伴好，",
+          "附上八月預計到貨的黑膠與 CD 清單，包含《谷底》二刷、《遷徙》黑膠，以及三張新進 CD，實際到貨數量與日期會依供應商出貨狀況調整，屆時會再另行通知。",
+          "麻煩門市先預留展示空間，謝謝。",
+          "採購部"
+        ]
+      },
+      {
+        id: 3,
+        unread: false,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "客訴處理辛苦了",
+        date: "07/16",
+        fullDate: "2026-07-16 19:40",
+        preview: "聽說今天那位客人的配送問題你處理得不錯，辛苦了……",
+        body: [
+          "聽說今天那位客人的配送問題你處理得不錯，辛苦了。",
+          "地址欄位的提醒文字我已經跟網站那邊反應，之後應該會改善。"
+        ]
+      },
+      {
+        id: 4,
+        unread: false,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "打烊流程提醒",
+        date: "07/14",
+        fullDate: "2026-07-14 09:15",
+        preview: "最近打烊常常延遲，麻煩照流程確認幾個項目……",
+        body: [
+          "最近打烊常常延遲，麻煩照流程確認幾個項目：試聽區電源、現金核對、店內門窗。",
+          "有狀況隨時傳訊息給我，謝謝。"
+        ]
+      },
+      {
+        id: 5,
+        unread: false,
+        sender: "店長",
+        email: "manager@sideb-records.com",
+        subject: "月底盤點提醒",
+        date: "07/10",
+        fullDate: "2026-07-10 16:15",
+        preview: "提醒大家這個月底要做全店盤點，麻煩提早整理好各分類的庫存……",
+        body: [
+          "提醒大家這個月底（7/31）要做全店盤點，麻煩提早整理好各分類的庫存，尤其是黑膠跟周邊區，之前盤點常常對不起來。",
+          "盤點當天會提早半小時開始，麻煩準時到。"
+        ]
+      }
+    ]
+  };
+
+  var currentUser = EchoStaffData.currentUsername();
+  var profile = EchoStaffData.currentProfile();
+
+  MailApp.initMailbox({
+    mailbox: "work-" + currentUser,
+    mails: MAILS_BY_USER[currentUser] || MAILS_BY_USER.staff,
+    listSelector: "#mail-list",
+    detailSelector: "#mail-detail",
+    toAddr: profile.displayName + " &lt;" + profile.email + "&gt;",
+    staffFrom: profile.displayName,
+    staffEmail: profile.email,
+    emptyHtml: '<div class="detail-empty">選擇左側的信件以查看完整內容</div>'
+  });
+</script>
+<script src="../../assets/js/staff-auth.js"></script>
+</body>
+</html>
