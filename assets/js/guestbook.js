@@ -60,6 +60,23 @@
       var seed = config.seed || [];
       var openReplyFor = null;
 
+      var loggedInName = (window.EchoStaffData && EchoStaffData.isLoggedIn())
+        ? EchoStaffData.currentProfile().displayName
+        : null;
+
+      if (loggedInName) {
+        var mainNameInput = form.querySelector('[name="name"]');
+        mainNameInput.value = loggedInName;
+        mainNameInput.readOnly = true;
+        mainNameInput.classList.add("is-locked");
+        var mainNameLabel = form.querySelector('label[for="' + mainNameInput.id + '"]');
+        if (mainNameLabel) mainNameLabel.textContent = "暱稱";
+        var lockHint = document.createElement("div");
+        lockHint.className = "hint";
+        lockHint.textContent = "已登入為「" + loggedInName + "」";
+        mainNameInput.insertAdjacentElement("afterend", lockHint);
+      }
+
       function renderReply(r) {
         return (
           '<div class="guestbook-reply">' +
@@ -74,9 +91,12 @@
         if (openReplyFor !== postId) {
           return '<button type="button" class="btn-guestbook-reply" data-reply-toggle="' + postId + '">↩ 回覆</button>';
         }
+        var nameFieldHtml = loggedInName
+          ? '<input type="text" class="reply-name-input is-locked" value="' + escapeHtml(loggedInName) + '" readonly />'
+          : '<input type="text" class="reply-name-input" placeholder="你的暱稱（選填）" />';
         return (
           '<div class="guestbook-reply-form">' +
-            '<input type="text" class="reply-name-input" placeholder="你的暱稱（選填）" />' +
+            nameFieldHtml +
             '<textarea class="reply-text-input" placeholder="回覆這則留言…"></textarea>' +
             '<div class="guestbook-reply-actions">' +
               '<button type="button" class="btn-reply-cancel" data-reply-cancel="' + postId + '">取消</button>' +

@@ -4,7 +4,7 @@
   var AUTH_KEY = "echoStaffAuth";
 
   function isLoggedIn() {
-    return sessionStorage.getItem(AUTH_KEY) === "1";
+    return EchoStaffData.isLoggedIn();
   }
 
   function login(username) {

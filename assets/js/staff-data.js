@@ -59,11 +59,16 @@
     sessionStorage.setItem(AUTH_USER_KEY, username);
   }
 
+  function isLoggedIn() {
+    return sessionStorage.getItem("echoStaffAuth") === "1";
+  }
+
   window.EchoStaffData = {
     users: USERS,
     findByCredentials: findByCredentials,
     currentUsername: currentUsername,
     currentProfile: currentProfile,
-    setCurrentUsername: setCurrentUsername
+    setCurrentUsername: setCurrentUsername,
+    isLoggedIn: isLoggedIn
   };
 })();

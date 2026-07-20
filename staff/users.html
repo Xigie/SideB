@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>總覽 —— SideB 唱片行員工系統</title>
+<title>用戶管理 —— SideB 唱片行員工系統</title>
 <link rel="stylesheet" href="../assets/css/staff.css" />
 </head>
 <body class="staff" data-staff-guard="true" data-depth="0">
@@ -13,9 +13,9 @@
     <a href="../shop/index.html" class="brand">SideB 唱片行</a>
     <div class="brand-sub">STAFF SYSTEM</div>
     <nav>
-      <a href="index.html" class="active">總覽</a>
+      <a href="index.html">總覽</a>
       <a href="profile.html">個人資訊</a>
-      <a href="users.html">用戶管理</a>
+      <a href="users.html" class="active">用戶管理</a>
       <a href="attendance.html">出勤紀錄</a>
       <a href="diary.html">工作日記</a>
       <a href="products.html">商品紀錄</a>
@@ -32,7 +32,7 @@
 
   <div class="staff-main">
     <div class="staff-topbar">
-      <h1>總覽</h1>
+      <h1>用戶管理</h1>
       <div class="search-box">
         <form>
           <input type="search" placeholder="搜尋商品、資訊…" />
@@ -43,38 +43,42 @@
     </div>
 
     <div class="staff-content">
-      <div class="panel">
-        <h2>今日提醒</h2>
-        <table class="data-table">
-          <tr><td>13:00 開店，確認試聽區設備電源</td><td><span class="status-pill ok">已完成</span></td></tr>
-          <tr><td>下午到貨：黑膠 2 箱、CD 1 箱，需點收上架</td><td><span class="status-pill warn">待處理</span></td></tr>
-          <tr><td>回覆客服信件（2 封未讀）</td><td><span class="status-pill warn">待處理</span></td></tr>
-        </table>
-      </div>
-
-      <div class="panel">
-        <h2>本月出勤概況</h2>
-        <table class="data-table">
-          <tr><th>本月已上班</th><th>請假</th><th>遲到</th></tr>
-          <tr><td>14 天</td><td>0 天</td><td>1 次</td></tr>
-        </table>
-      </div>
-
-      <div class="panel">
-        <h2>快速連結</h2>
-        <table class="data-table">
-          <tr><td><a href="diary.html">查看工作日記</a></td></tr>
-          <tr><td><a href="products.html">查看商品紀錄</a></td></tr>
-          <tr><td><a href="delivery.html">查看送貨紀錄</a></td></tr>
-          <tr><td><a href="mail/index.html">前往電子郵件</a></td></tr>
-        </table>
-      </div>
+      <p class="users-note">目前所有可登入的員工帳號如下。</p>
+      <div id="users-list"></div>
     </div>
   </div>
 </div>
 
 <script src="../assets/js/staff-data.js"></script>
 <script src="../assets/js/search.js"></script>
+<script>
+  var listEl = document.getElementById("users-list");
+  var users = EchoStaffData.users;
+
+  listEl.innerHTML = Object.keys(users).map(function (key) {
+    var u = users[key];
+    return (
+      '<div class="panel">' +
+        '<div class="profile-head">' +
+          '<div class="avatar">' + u.avatarInitial + '</div>' +
+          '<div>' +
+            '<h2>' + u.displayName + '</h2>' +
+            '<div class="role">' + u.roleDetail + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<dl class="kv-grid">' +
+          '<dt>帳號</dt><dd>' + u.username + '</dd>' +
+          '<dt>員工編號</dt><dd>' + u.employeeId + '</dd>' +
+          '<dt>到職日期</dt><dd>' + u.joinDate + '</dd>' +
+          '<dt>所屬門市</dt><dd>' + u.store + '</dd>' +
+          '<dt>職務</dt><dd>' + u.duty + '</dd>' +
+          '<dt>聯絡電話</dt><dd>' + u.phone + '</dd>' +
+          '<dt>內部信箱</dt><dd>' + u.email + '</dd>' +
+        '</dl>' +
+      '</div>'
+    );
+  }).join("");
+</script>
 <script src="../assets/js/staff-auth.js"></script>
 </body>
 </html>
