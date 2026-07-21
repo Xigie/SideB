@@ -12,15 +12,15 @@
       roleShort: "門市人員",
       roleDetail: "門市人員 · 商品組",
       employeeId: "ER-2024-001",
-      joinDate: "2021 年 6 月 7 日",
+      joinDate: "2024 年 11 月 21 日",
       store: "SideB 唱片行 本店",
       duty: "商品上架、試聽區管理、櫃檯服務",
       phone: "0912-XXX-XXX",
-      email: "shin.yin@sideb-records.com",
+      email: "shinyin@sideb-records.com",
       avatarInitial: "時",
-      emergencyName: "月詩",
-      emergencyRelation: "家人",
-      emergencyPhone: "0928-XXX-XXX"
+      emergencyName: "???",
+      emergencyRelation: "??",
+      emergencyPhone: "????-???-???"
     },
     tsukiuta: {
       username: "tsukiuta",
@@ -29,15 +29,15 @@
       roleShort: "門市人員",
       roleDetail: "門市人員 · 客服組",
       employeeId: "ER-2024-010",
-      joinDate: "2022 年 3 月 15 日",
+      joinDate: "2024 年 9 月 9 日",
       store: "SideB 唱片行 本店",
       duty: "客服信箱回覆、訂單問題處理、櫃檯服務",
       phone: "0928-XXX-XXX",
       email: "tsukiuta@sideb-records.com",
       avatarInitial: "月",
-      emergencyName: "時音",
-      emergencyRelation: "家人",
-      emergencyPhone: "0912-XXX-XXX"
+      emergencyName: "月清",
+      emergencyRelation: "盆栽",
+      emergencyPhone: "09XX-XXX-XXX"
     }
   };
 
