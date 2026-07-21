@@ -29,7 +29,7 @@
       roleShort: "門市人員",
       roleDetail: "門市人員 · 客服組",
       employeeId: "ER-2024-010",
-      joinDate: "2005 年 12 月 12 日",
+      joinDate: "2024 年 9 月 1 日",
       store: "SideB 唱片行 本店",
       duty: "客服信箱回覆、訂單問題處理、櫃檯服務",
       phone: "0928-XXX-XXX",
