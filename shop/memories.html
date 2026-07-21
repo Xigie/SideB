@@ -6,7 +6,7 @@
 <title>回憶留言板 —— Side B 唱片行</title>
 <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
-<body data-depth="0">
+<body data-area="shop" data-depth="0" data-shop-guard="true">
 
 <header class="site-header">
   <div class="container">
@@ -21,6 +21,7 @@
           <button type="submit" aria-label="搜尋">🔍</button>
         </form>
       </div>
+      <div class="auth-box" id="auth-box"></div>
       <button class="mobile-nav-toggle" aria-label="選單">☰</button>
     </div>
     <nav class="main-nav">
@@ -55,10 +56,7 @@
     </p>
 
     <form class="guestbook-form" id="guestbook-form">
-      <div class="field">
-        <label for="gb-name">暱稱（不填就是匿名）</label>
-        <input type="text" id="gb-name" name="name" maxlength="30" placeholder="你的暱稱" />
-      </div>
+      <div class="field-identity" data-identity></div>
       <div class="field">
         <label for="gb-text">留言內容</label>
         <textarea id="gb-text" name="text" maxlength="400" placeholder="寫點什麼……" required></textarea>
@@ -115,7 +113,6 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 Side B 唱片行 Side B Records. All rights reserved.</span>
-      <a class="staff-link" href="../staff/login.html">員工專區</a>
     </div>
   </div>
 </footer>
@@ -155,5 +152,6 @@
     seed: SEED_MEMORIES
   });
 </script>
+<script src="../assets/js/staff-auth.js"></script>
 </body>
 </html>

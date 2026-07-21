@@ -1,4 +1,4 @@
-// 回憶留言板 —— 訪客可以留言、可選填一張照片網址，也能在每則留言底下回覆別人。
+// 回憶留言板 —— 需要先登入才能留言，也能在每則留言底下回覆別人（用登入身份，沒有暱稱欄位）。
 // 送出後存在自己瀏覽器的 localStorage。
 // SEED_MEMORIES（每頁自己內嵌的資料）是隨網站一起發布的「官方」留言，所有人都看得到，
 // 之後要埋新的線索，直接往該頁面的 SEED_MEMORIES 陣列新增一筆即可（記得給不重複的 id）。
@@ -62,20 +62,10 @@
 
       var loggedInName = (window.EchoStaffData && EchoStaffData.isLoggedIn())
         ? EchoStaffData.currentProfile().displayName
-        : null;
+        : "匿名";
 
-      if (loggedInName) {
-        var mainNameInput = form.querySelector('[name="name"]');
-        mainNameInput.value = loggedInName;
-        mainNameInput.readOnly = true;
-        mainNameInput.classList.add("is-locked");
-        var mainNameLabel = form.querySelector('label[for="' + mainNameInput.id + '"]');
-        if (mainNameLabel) mainNameLabel.textContent = "暱稱";
-        var lockHint = document.createElement("div");
-        lockHint.className = "hint";
-        lockHint.textContent = "已登入為「" + loggedInName + "」";
-        mainNameInput.insertAdjacentElement("afterend", lockHint);
-      }
+      var identityEl = form.querySelector("[data-identity]");
+      if (identityEl) identityEl.textContent = "以「" + loggedInName + "」的身份留言";
 
       function renderReply(r) {
         return (
@@ -91,12 +81,9 @@
         if (openReplyFor !== postId) {
           return '<button type="button" class="btn-guestbook-reply" data-reply-toggle="' + postId + '">↩ 回覆</button>';
         }
-        var nameFieldHtml = loggedInName
-          ? '<input type="text" class="reply-name-input is-locked" value="' + escapeHtml(loggedInName) + '" readonly />'
-          : '<input type="text" class="reply-name-input" placeholder="你的暱稱（選填）" />';
         return (
           '<div class="guestbook-reply-form">' +
-            nameFieldHtml +
+            '<div class="hint">以「' + escapeHtml(loggedInName) + '」的身份回覆</div>' +
             '<textarea class="reply-text-input" placeholder="回覆這則留言…"></textarea>' +
             '<div class="guestbook-reply-actions">' +
               '<button type="button" class="btn-reply-cancel" data-reply-cancel="' + postId + '">取消</button>' +
@@ -151,7 +138,6 @@
         if (sendBtn) {
           var postId = sendBtn.getAttribute("data-reply-send");
           var wrap = sendBtn.closest(".guestbook-reply-form");
-          var nameInput = wrap.querySelector(".reply-name-input");
           var textInput = wrap.querySelector(".reply-text-input");
           var text = textInput.value.trim();
           if (!text) {
@@ -160,7 +146,7 @@
           }
           saveReply({
             postId: postId,
-            name: nameInput.value.trim() || "匿名",
+            name: loggedInName,
             text: text,
             time: nowStamp()
           });
@@ -171,7 +157,6 @@
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        var nameEl = form.querySelector('[name="name"]');
         var textEl = form.querySelector('[name="text"]');
         var photoEl = form.querySelector('[name="photo"]');
 
@@ -184,7 +169,7 @@
         var local = loadLocalPosts();
         local.unshift({
           id: uid(),
-          name: nameEl.value.trim() || "匿名",
+          name: loggedInName,
           text: text,
           photo: photoEl && photoEl.value.trim() ? photoEl.value.trim() : null,
           time: nowStamp()
