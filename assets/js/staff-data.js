@@ -18,9 +18,9 @@
       phone: "0912-XXX-XXX",
       email: "shinyin@sideb-records.com",
       avatarInitial: "時",
-      emergencyName: "月詩",
-      emergencyRelation: "家人",
-      emergencyPhone: "0928-XXX-XXX"
+      emergencyName: "???",
+      emergencyRelation: "??",
+      emergencyPhone: "????-???-???"
     },
     tsukiuta: {
       username: "tsukiuta",
@@ -35,9 +35,9 @@
       phone: "0928-XXX-XXX",
       email: "tsukiuta@sideb-records.com",
       avatarInitial: "月",
-      emergencyName: "時音",
-      emergencyRelation: "家人",
-      emergencyPhone: "0912-XXX-XXX"
+      emergencyName: "月清",
+      emergencyRelation: "盆栽",
+      emergencyPhone: "09XX-XXX-XXX"
     }
   };
 
