@@ -60,12 +60,24 @@
       var seed = config.seed || [];
       var openReplyFor = null;
 
-      var loggedInName = (window.EchoStaffData && EchoStaffData.isLoggedIn())
-        ? EchoStaffData.currentProfile().displayName
-        : "匿名";
+      var loggedInName = (window.SideBStaffData && SideBStaffData.isLoggedIn())
+        ? SideBStaffData.currentProfile().displayName
+        : null;
 
       var identityEl = form.querySelector("[data-identity]");
-      if (identityEl) identityEl.textContent = "以「" + loggedInName + "」的身份留言";
+      if (identityEl) {
+        identityEl.textContent = loggedInName
+          ? "以「" + loggedInName + "」的身份留言"
+          : "登入後才能留言";
+      }
+
+      function promptLogin() {
+        var goLogin = window.confirm("留言前要先登入，要現在去登入嗎？");
+        if (goLogin) {
+          var ret = encodeURIComponent(window.location.pathname);
+          window.location.href = "../staff/login.html?return=" + ret;
+        }
+      }
 
       function renderReply(r) {
         return (
@@ -122,6 +134,10 @@
       listEl.addEventListener("click", function (e) {
         var toggleBtn = e.target.closest("[data-reply-toggle]");
         if (toggleBtn) {
+          if (!loggedInName) {
+            promptLogin();
+            return;
+          }
           openReplyFor = toggleBtn.getAttribute("data-reply-toggle");
           render();
           return;
@@ -157,6 +173,10 @@
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+        if (!loggedInName) {
+          promptLogin();
+          return;
+        }
         var textEl = form.querySelector('[name="text"]');
         var photoEl = form.querySelector('[name="photo"]');
 

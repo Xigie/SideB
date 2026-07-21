@@ -1,6 +1,6 @@
 // 員工系統的電子郵件功能：清單/內容顯示、回覆撰寫、回覆紀錄（存在 localStorage，同瀏覽器下可跨頁面查看）。
 (function () {
-  var STORAGE_KEY = "echoMailReplies";
+  var STORAGE_KEY = "sidebMailReplies";
 
   function loadReplies() {
     try {
@@ -170,7 +170,7 @@
             mailSenderEmail: m.email,
             body: text,
             time: nowStamp(),
-            sentBy: (window.EchoStaffData && EchoStaffData.currentUsername()) || null
+            sentBy: (window.SideBStaffData && SideBStaffData.currentUsername()) || null
           });
           composeOpen = false;
           renderList();
@@ -212,7 +212,7 @@
     var detailEl = document.querySelector(config.detailSelector);
     var staffName = config.staffFrom || "時音";
     var staffEmail = config.staffEmail || "shin.yin@sideb-records.com";
-    var currentUser = (window.EchoStaffData && EchoStaffData.currentUsername()) || null;
+    var currentUser = (window.SideBStaffData && SideBStaffData.currentUsername()) || null;
     var selectedIndex = null;
 
     function categoryLabel(mailbox) {

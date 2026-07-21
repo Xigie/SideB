@@ -1,18 +1,18 @@
 // 登入邏輯 —— 僅用 sessionStorage 做前端擋門，非真正的身分驗證。
-// 帳號資料來自 staff-data.js 的 EchoStaffData。同一套登入狀態同時用在：
+// 帳號資料來自 staff-data.js 的 SideBStaffData。同一套登入狀態同時用在：
 //   1. 員工系統（staff/*，data-staff-guard="true" 才需要登入）
 //   2. 官網的購物與回憶留言板（shop/*，data-shop-guard="true" 才需要登入）
 //   3. 官網 header 的登入狀態小工具（頁面上有 #auth-box 就會自動渲染）
 (function () {
-  var AUTH_KEY = "echoStaffAuth";
+  var AUTH_KEY = "sidebStaffAuth";
 
   function isLoggedIn() {
-    return EchoStaffData.isLoggedIn();
+    return SideBStaffData.isLoggedIn();
   }
 
   function login(username) {
     sessionStorage.setItem(AUTH_KEY, "1");
-    EchoStaffData.setCurrentUsername(username);
+    SideBStaffData.setCurrentUsername(username);
   }
 
   function logout() {
@@ -48,7 +48,7 @@
   }
 
   function fillWhoami() {
-    var profile = EchoStaffData.currentProfile();
+    var profile = SideBStaffData.currentProfile();
     document.querySelectorAll(".whoami").forEach(function (el) {
       el.textContent = profile.displayName + "・" + profile.roleShort;
     });
@@ -60,7 +60,7 @@
     if (!box) return;
 
     if (isLoggedIn()) {
-      var profile = EchoStaffData.currentProfile();
+      var profile = SideBStaffData.currentProfile();
       box.innerHTML =
         '<a href="' + staffHomePath() + '" class="auth-name">' + profile.displayName + '</a>' +
         '<a href="#" class="auth-logout" data-shop-logout>登出</a>';
@@ -90,7 +90,7 @@
         e.preventDefault();
         var user = document.getElementById("login-user").value.trim();
         var pass = document.getElementById("login-pass").value.trim();
-        var matched = EchoStaffData.findByCredentials(user, pass);
+        var matched = SideBStaffData.findByCredentials(user, pass);
         if (matched) {
           login(matched.username);
           var params = new URLSearchParams(window.location.search);

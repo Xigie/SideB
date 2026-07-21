@@ -1,5 +1,5 @@
 // 員工系統的帳號資料 —— 目前有兩位店員：時音、月詩。
-// 其他腳本（staff-auth.js、mail-app.js、以及各頁面內嵌的 script）都透過 EchoStaffData 存取。
+// 其他腳本（staff-auth.js、mail-app.js、以及各頁面內嵌的 script）都透過 SideBStaffData 存取。
 (function () {
   var AUTH_USER_KEY = "sidebStaffUser";
   var DEFAULT_USER = "staff";
@@ -7,7 +7,7 @@
   var USERS = {
     staff: {
       username: "staff",
-      password: "echo2024",
+      password: "sideb2024",
       displayName: "時音",
       roleShort: "門市人員",
       roleDetail: "門市人員 · 商品組",
@@ -24,7 +24,7 @@
     },
     tsukiuta: {
       username: "tsukiuta",
-      password: "echo2024",
+      password: "sideb2024",
       displayName: "月詩",
       roleShort: "門市人員",
       roleDetail: "門市人員 · 客服組",
@@ -60,10 +60,10 @@
   }
 
   function isLoggedIn() {
-    return sessionStorage.getItem("echoStaffAuth") === "1";
+    return sessionStorage.getItem("sidebStaffAuth") === "1";
   }
 
-  window.EchoStaffData = {
+  window.SideBStaffData = {
     users: USERS,
     findByCredentials: findByCredentials,
     currentUsername: currentUsername,

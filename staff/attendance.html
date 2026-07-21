@@ -78,7 +78,7 @@
     ]
   };
 
-  var rows = ATTENDANCE[EchoStaffData.currentUsername()] || ATTENDANCE.staff;
+  var rows = ATTENDANCE[SideBStaffData.currentUsername()] || ATTENDANCE.staff;
   document.getElementById("attendance-rows").innerHTML = rows.map(function (r) {
     return (
       "<tr><td class=\"mono\">" + r.date + "</td>" +

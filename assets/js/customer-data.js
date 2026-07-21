@@ -46,7 +46,7 @@
     }
   ];
 
-  window.EchoCustomerData = {
+  window.SideBCustomerData = {
     customers: CUSTOMERS
   };
 })();
