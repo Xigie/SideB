@@ -398,6 +398,75 @@ section { padding: 48px 0; }
 .card-body .price { margin-top: auto; font-weight: 700; color: var(--color-maroon); padding-top: 8px; }
 .card-body .catno { font-size: 0.72rem; color: #a89878; }
 
+/* ---------- 神祕商品（風格刻意跟其他商品不同）---------- */
+.card.mystery {
+  border: 1px dashed var(--color-ink-soft);
+  background: var(--color-bg-alt);
+}
+
+.card.mystery .cover {
+  background: repeating-linear-gradient(135deg, #3a3a3a, #3a3a3a 8px, #4a4a4a 8px, #4a4a4a 16px);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.card.mystery .card-body h3 { font-style: italic; color: var(--color-ink-soft); }
+
+.mystery-review {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--color-line);
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+}
+
+.mystery-review .review-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+
+/* ---------- 劇本頁面 ---------- */
+.script-meta {
+  display: flex;
+  gap: 18px;
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+}
+
+.script-section { margin-bottom: 28px; }
+
+.script-section h3 {
+  font-family: var(--font-title);
+  color: var(--color-maroon);
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 6px;
+}
+
+.script-block {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 20px 24px;
+  white-space: pre-wrap;
+  font-family: var(--font-base);
+  line-height: 1.8;
+  font-size: 0.92rem;
+  color: var(--color-ink);
+}
+
+.script-afterword {
+  background: var(--color-bg-alt);
+  border-left: 3px solid var(--color-mustard);
+  padding: 18px 22px;
+  line-height: 1.9;
+  color: var(--color-ink-soft);
+}
+
 /* ---------- Service list ---------- */
 .service-list {
   display: grid;

@@ -69,6 +69,13 @@
       url: "shop/services.html",
       desc: "黑膠試聽、老件收購、代購與修復等服務項目。",
       tag: "資訊"
+    },
+    {
+      keywords: ["20250307"],
+      title: "德斯伯爵莊園 劇本",
+      url: "shop/products/manor-script.html",
+      desc: "一份不在任何分類目錄裡的劇本。",
+      tag: "？"
     }
   ];
 
